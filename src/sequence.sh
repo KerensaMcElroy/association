@@ -31,7 +31,7 @@ export BIG_LOGS=/OSM/CBR/AG_FUTUREFOREST/home/${PROJECT}/logs
 mkdir -p ${BIG_DATA}
 mkdir -p ${BIG_ANALYSIS}
 mkdir -p ${BIG_RESULTS}
-mkidr -p ${BIG_LOGS}
+mkdir -p ${BIG_LOGS}
 
 #get genome data
 ~/${PROJECT}/src/download.sh
@@ -45,4 +45,4 @@ call_prog () {
 
 #-------------------------analysis------------------------------#
 
-call_prog fastqc
+#call_prog
