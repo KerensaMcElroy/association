@@ -19,19 +19,17 @@ export PROJECT=2018-01-01_e-camal-assoc
 
 #-------------------environmental variables---------------------#
 
-export BIG_DATA=/OSM/CBR/AG_FUTUREFOREST/home/${PROJECT}/data
-export BIG_ANALYSIS=${FLUSHDIR}/AG_FUTUREFOREST/			#this breaks portability to some extent
-export BIG_RESULTS=/OSM/CBR/AG_FUTUREFOREST/home/${PROJECT}/results
-export BIG_LOGS=/OSM/CBR/AG_FUTUREFOREST/home/${PROJECT}/logs
+export BIG=/OSM/CBR/AG_FUTUREFOREST/home/${PROJECT}
+export ANALYSIS=${FLUSHDIR}/AG_FUTUREFOREST/			#this breaks portability to some extent
 
 
 #---------------------------set up------------------------------#
 
 #generate directories
-mkdir -p ${BIG_DATA}
-mkdir -p ${BIG_ANALYSIS}
-mkdir -p ${BIG_RESULTS}
-mkdir -p ${BIG_LOGS}
+mkdir -p ${BIG}/data
+mkdir -p ${BIG}/analysis
+mkdir -p ${BIG}/results
+mkdir -p ${BIG}/logs/slurm
 
 #get genome data
 ~/${PROJECT}/src/download.sh
