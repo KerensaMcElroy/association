@@ -15,4 +15,6 @@ export IN_DIR=/OSM/CBR/AG_FUTUREFOREST/home/SIEF/E.camaldulensis/Target_enrichme
 export IN_EXT=fastq.gz
 export OUT_DIR=$BIG/data
 
-sbatch -a 0-$(expr $(ls -l ${IN_DIR}/*${IN_EXT} | wc -l) - 1) ~/scripts/copy.sh 
+CMD=`echo "sbatch -a 0-$(expr $(ls -l ${IN_DIR}/*${IN_EXT} | wc -l) - 1) ${HOME}/scripts/copy.sh"`
+echo -e "\nRunning command: \n${CMD}" >> ${BIG}/logs/${TODAY}_main.log
+${CMD}
