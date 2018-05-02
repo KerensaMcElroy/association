@@ -17,6 +17,7 @@ export PROJECT=2018-01-01_e-camal-assoc
 export PHRED=
 export EXT=fastq.gz
 export READ_ONE=_R1
+export UNIT_RX=1-4
 
 #-------------------environmental variables---------------------#
 
