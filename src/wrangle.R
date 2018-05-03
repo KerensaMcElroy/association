@@ -21,7 +21,9 @@ fastq <- fastq %>%
   separate(col = 1, into = c('flowcell', 'lane', 'DT', 'CBY', 'UDF/Origin', 
                                          'index', 'R', 'sub.date', 'researcher', 'PM', 
                                          'M', 'read.pair'), sep = '_', remove = FALSE ) %>% 
-  select_if(has_data)
+  select_if(has_data) %>%
+  mutate(DT = format(as.Date(DT, "%y%m%d"), format = "%d-%m-%Y")) %>%
+  mutate(sub.date = format(as.Date(sub.date, "%d%m%Y"), format = "%d-%m-%Y"))  
 
 #metadata supplied by garvan sequencing centre
 garvan <- read_csv('data/R_171103_SHADIL_LIB2500_M001.csv', skip = 12) %>%
@@ -39,7 +41,10 @@ complete.data <- inner_join(fastq, garvan, by = 'index') %>%
 
 colnames(complete.data) <- sub('_x$','',colnames(complete.data))
 colnames(complete.data) <- sub('u_l','ul',colnames(complete.data))
-complete.data <- rename(complete.data, 'sm' = 'udf_external_id', 'garvan_id' = 'sample_name')
+complete.data <- complete.data %>% 
+  rename('sm' = 'udf_external_id', 'garvan_id' = 'sample_name') %>%
+  mutate(lib_date= format(as.Date(lib_date, "%d%m%Y"), format = "%d-%m-%Y"))  
+
 
 #print
 meta.data <- select(complete.data, c('files', 'sm', 'index', 'lib_date', 
